@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiApp - Run Multiple Instances</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loader">
+            <div class="logo">
+                <i class="fas fa-layer-group"></i>
+                <h1>MultiApp</h1>
+            </div>
+            <p>Loading your apps...</p>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Interface -->
+    <div id="appInterface" class="app-interface" style="display: none;">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <i class="fas fa-layer-group"></i>
+                <h1>MultiApp</h1>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn" onclick="toggleDarkMode()">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="icon-btn" onclick="showSettings()">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- App Dashboard -->
+        <main class="dashboard">
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-grid">
+                    <div class="action-card" onclick="scanInstalledApps()">
+                        <i class="fas fa-search"></i>
+                        <span>Scan Apps</span>
+                    </div>
+                    <div class="action-card" onclick="showAllInstances()">
+                        <i class="fas fa-window-restore"></i>
+                        <span>All Instances</span>
+                    </div>
+                    <div class="action-card" onclick="createQuickInstance()">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Quick Launch</span>
+                    </div>
+                    <div class="action-card" onclick="showAppManager()">
+                        <i class="fas fa-th-large"></i>
+                        <span>App Manager</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Installed Apps Grid -->
+            <section class="apps-section">
+                <div class="section-header">
+                    <h2>Your Apps</h2>
+                    <button class="refresh-btn" onclick="loadInstalledApps()">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+                <div id="appsGrid" class="apps-grid">
+                    <!-- Apps dynamically loaded here -->
+                </div>
+            </section>
+
+            <!-- Running Instances -->
+            <section class="instances-section">
+                <div class="section-header">
+                    <h2>Running Instances</h2>
+                    <span id="instanceCount" class="badge">0</span>
+                </div>
+                <div id="instancesList" class="instances-list">
+                    <!-- Running instances will appear here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Floating Action Button -->
+        <button class="fab" onclick="showQuickLaunch()">
+            <i class="fas fa-rocket"></i>
+        </button>
+    </div>
+
+    <!-- Modals -->
+    <div id="appModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Launch App</h3>
+                <button class="close-btn" onclick="closeModal('appModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="appModalContent">
+                    <!-- App launch options -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Launch Modal -->
+    <div id="quickLaunchModal" class="modal">
+        <div class="modal-content quick-launch">
+            <div class="modal-header">
+                <h3>Quick Launch</h3>
+                <button class="close-btn" onclick="closeModal('quickLaunchModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="quick-apps">
+                    <div class="quick-app" onclick="launchWebApp('whatsapp')">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </div>
+                    <div class="quick-app" onclick="launchWebApp('gmail')">
+                        <i class="fas fa-envelope"></i>
+                        <span>Gmail</span>
+                    </div>
+                    <div class="quick-app" onclick="launchWebApp('youtube')">
+                        <i class="fab fa-youtube"></i>
+                        <span>YouTube</span>
+                    </div>
+                    <div class="quick-app" onclick="launchWebApp('maps')">
+                        <i class="fas fa-map"></i>
+                        <span>Maps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
